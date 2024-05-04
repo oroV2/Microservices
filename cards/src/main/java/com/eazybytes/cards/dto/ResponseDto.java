@@ -1,8 +1,4 @@
-package com.eazybytes.account.dto;
-
-import java.time.LocalDateTime;
-
-import org.springframework.http.HttpStatus;
+package com.eazybytes.cards.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

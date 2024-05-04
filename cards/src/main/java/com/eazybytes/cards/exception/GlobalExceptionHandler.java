@@ -1,4 +1,4 @@
-package com.eazybytes.account.exception;
+package com.eazybytes.cards.exception;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -17,15 +17,16 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.eazybytes.account.dto.ErrorResponseDto;
-import com.eazybytes.account.entity.Customer;
+import com.eazybytes.cards.dto.ErrorResponseDto;
+import com.eazybytes.cards.exception.CardAlreadyExsitsException;
+import com.eazybytes.cards.exception.ResourceNotFoundException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-	@ExceptionHandler(CustomerAlreadyExsitsException.class)
-	public ResponseEntity<ErrorResponseDto> handleCustomerAlreadyExistsException(
-			CustomerAlreadyExsitsException exception, WebRequest webRequest) {
+	@ExceptionHandler(CardAlreadyExsitsException.class)
+	public ResponseEntity<ErrorResponseDto> handleCustomerAlreadyExistsException(CardAlreadyExsitsException exception,
+			WebRequest webRequest) {
 		ErrorResponseDto errorResponseDto = new ErrorResponseDto(webRequest.getDescription(false),
 				HttpStatus.BAD_REQUEST, exception.getMessage(), LocalDateTime.now());
 		return new ResponseEntity<>(errorResponseDto, HttpStatus.BAD_REQUEST);

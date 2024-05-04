@@ -1,4 +1,4 @@
-package com.eazybytes.account.entity;
+package com.eazybytes.cards.entity;
 
 import java.time.LocalDateTime;
 
@@ -16,10 +16,10 @@ import lombok.Setter;
 import lombok.ToString;
 
 @MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
 @ToString
-@EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
 
 	@CreatedDate
