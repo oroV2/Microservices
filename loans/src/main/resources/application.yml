@@ -11,6 +11,7 @@ spring:
    enable: true
  jpa:
   database-platform: org.hibernate.dialect.MySQLDialect
+  defer-datasource-initialization: true
   hibernat:
    ddl-auto: update
   show-sql: true
