@@ -2,6 +2,9 @@ package com.eazybytes.account.controller;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.eazybytes.account.constants.AccountsConstants;
+import com.eazybytes.account.dto.AccountsContactInfoDto;
 import com.eazybytes.account.dto.CustomerDto;
 import com.eazybytes.account.dto.ErrorResponseDto;
 import com.eazybytes.account.dto.ResponseDto;
@@ -41,6 +45,15 @@ import lombok.AllArgsConstructor;
 public class AccountController {
 
 	private IAccountsService iAccountService;
+	
+	@Value("${account.name)")
+	private String name;
+	
+	@Autowired
+	private Environment environment;
+	
+	@Autowired
+	private AccountsContactInfoDto accountsContactInfoDto;
 
 	@Operation(description = "Rest Api to create new customer and account inside DataBase", summary = "Creat Account REST API")
 	@ApiResponse(responseCode = "201", description = "Http Status Created")
@@ -91,6 +104,21 @@ public class AccountController {
 			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED)
 					.body(new ResponseDto(AccountsConstants.STATUS_417, AccountsConstants.MESSAGE_417_DELETE));
 		}
+	}
+
+	@GetMapping("/contact-info")
+	public ResponseEntity<AccountsContactInfoDto> getContactInfo() {
+		return ResponseEntity.status(HttpStatus.OK).body(accountsContactInfoDto);
+	}
+
+	@GetMapping("/account-name")
+	public ResponseEntity<String> getAccountName() {
+		return ResponseEntity.status(HttpStatus.OK).body(name);
+	}
+	
+	@GetMapping("/java-version")
+	public ResponseEntity<String> getJavaVersion() {
+		return ResponseEntity.status(HttpStatus.OK).body(environment.getProperty("JAVA_VERSION"));
 	}
 
 }
