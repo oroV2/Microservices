@@ -16,8 +16,18 @@ spring:
   show-sql: true
  application:
   name: account
+ config:
+    import:
+     - "application_qa.yml"
+     - "application_prod.yml"
+ profiles:
+    active:
+    - "qa"
+    
+build:
+  version: "3.0"
   
- accounts:
+accounts:
   message: "Welcome to Accounts web service."
   contactDetails:
     name: "Onkar P"
