@@ -1,0 +1,45 @@
+spring:
+ application:
+  name: "configserver"
+ profiles:
+    active:
+      - native
+ cloud:
+    config:
+      server:
+        native:
+          #search-locations: "classpath:/config"
+          git:
+           url: "" #ssh git link
+           default-label: "" #branch_name
+           timeout: 5
+           clone-on-start: true #make_clone_on_local_repository
+           force-pull: true
+ rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+           
+ encrypt:
+  key: "7B6A48BC8B35997517362D75ADDDE"
+  
+ management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  
+server:
+ port: 8071
+

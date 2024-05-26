@@ -1,0 +1,12 @@
+build:
+  version: "1.0"
+  
+accounts:
+  message: "Welcome to Accounts web service."
+  contactDetails:
+    name: "Onkar P"
+    email: "onkarp@gmail.com"
+  onCallSupport:
+    -(222) 5555-5555
+    -(222) 6666-6666
+    
