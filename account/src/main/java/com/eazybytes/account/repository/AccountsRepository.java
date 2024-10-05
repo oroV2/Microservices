@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.eazybytes.account.entity.Accounts;
 
 @Repository
-public interface AccountsRepository extends JpaRepository<Accounts, Long> {
+public interface AccountsRepository extend JpaRepository<Accounts, Long> {
 
 	Optional<Accounts> findByCustomerId(Long customerId);
 	
